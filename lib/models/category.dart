@@ -1,9 +1,16 @@
-class Category {
-  String id;
-  String name;
-  bool isChecked;
+import 'package:reminders/common/widgets/category_icon.dart';
 
-  Category({required this.id, required this.name, this.isChecked = true});
+class Category {
+  final String id;
+  final String name;
+  bool isChecked;
+  final CategoryIcon icon;
+
+  Category({
+    required this.icon,
+    required this.id,
+    required this.name,
+    this.isChecked = true
+    });
 }
 
-var category = Category(id: '1', name: 'all');

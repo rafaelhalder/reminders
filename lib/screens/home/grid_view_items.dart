@@ -1,12 +1,13 @@
 import 'package:flutter/cupertino.dart';
+import 'package:reminders/models/category.dart';
 import '../../models/category_collection.dart';
 
 class GridViewItems extends StatelessWidget {
   const GridViewItems({
-    required this.categoryCollection,
+    required this.categories,
   });
 
-  final CategoryCollection categoryCollection;
+  final List<Category> categories;
 
   @override
   Widget build(BuildContext context) {
@@ -16,7 +17,7 @@ class GridViewItems extends StatelessWidget {
       childAspectRatio: 16 / 9,
       crossAxisSpacing: 10,
       mainAxisSpacing: 10,
-      children: categoryCollection.categories
+      children: categories
           .map(
             (category) => Container(
                 decoration: BoxDecoration(

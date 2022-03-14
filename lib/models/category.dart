@@ -12,5 +12,9 @@ class Category {
     required this.name,
     this.isChecked = true
     });
+
+    void toggledIsChecked(){
+      isChecked = !isChecked;
+    }
 }
 

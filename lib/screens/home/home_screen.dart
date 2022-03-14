@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:reminders/common/widgets/category_icon.dart';
 import 'package:reminders/models/category_collection.dart';
 import 'package:reminders/screens/home/footer.dart';
+import 'package:reminders/screens/home/list_view_intems.dart';
 
 import '../../models/category.dart';
 import 'grid_view_items.dart';
@@ -76,10 +77,16 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Container(
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
-              child: GridViewItems(categoryCollection: categoryCollection),
-            ),
+              child: layoutType == 'grid'
+               ? GridViewItems(
+                 categories: categoryCollection.selectedCategories,
+                ) : ListViewItems(categoryCollection: categoryCollection),
+            )
+            ,
             Footer()
           ],
         ),

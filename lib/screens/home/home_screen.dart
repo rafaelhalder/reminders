@@ -81,13 +81,17 @@ class _HomeScreenState extends State<HomeScreen> {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
-              child: layoutType == 'grid'
-               ? GridViewItems(
+             child: AnimatedCrossFade(
+               duration: const Duration(milliseconds: 300),
+              crossFadeState: layoutType == 'grid' ? 
+              CrossFadeState.showFirst : CrossFadeState.showSecond,
+              firstChild: GridViewItems(
                  categories: categoryCollection.selectedCategories,
-                ) : ListViewItems(categoryCollection: categoryCollection),
-            )
-            ,
-            Footer()
+                ),
+              secondChild: ListViewItems(categoryCollection: categoryCollection)
+             ),
+            ),
+            const Footer()
           ],
         ),
       ),

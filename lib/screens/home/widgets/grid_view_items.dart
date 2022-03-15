@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
-import 'package:reminders/models/category.dart';
-import '../../models/category_collection.dart';
+import 'package:reminders/models/category/category.dart';
+import '../../../models/category/category_collection.dart';
 
 class GridViewItems extends StatelessWidget {
   const GridViewItems({

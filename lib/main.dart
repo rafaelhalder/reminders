@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reminders/screens/home/add_list/add_list_screen.dart';
 import 'package:reminders/screens/home/home_screen.dart';
 
 void main() {
@@ -14,7 +15,8 @@ class App extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': ((context) => HomeScreen()),
+        '/': (context) => HomeScreen(),
+        '/addList': (context) => AddListScreen(),
       },
       theme: ThemeData.dark(),
     );

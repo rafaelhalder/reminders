@@ -34,6 +34,7 @@ class _AddListScreenState extends State<AddListScreen> {
               height:20
             ),
             Container(
+              padding: const EdgeInsets.all(10),
               decoration: BoxDecoration(color: Theme.of(context).cardColor,
               borderRadius: BorderRadius.circular(10)),
               child: TextField(

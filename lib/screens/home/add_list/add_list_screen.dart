@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:reminders/models/common/custom_color_collection.dart';
 
 class AddListScreen extends StatefulWidget {
   const AddListScreen({ Key? key }) : super(key: key);
@@ -51,6 +52,24 @@ class _AddListScreenState extends State<AddListScreen> {
                     child: Icon(Icons.clear)),
                 )
               ),
+            ),
+            SizedBox(
+              height:10
+            ),
+            Wrap(
+              alignment: WrapAlignment.center,
+              spacing: 10,
+              runSpacing: 10,
+              children: [
+                for(final customColorssss in CustomColorCollection().colors)
+                Container(
+                  height: 50,
+                  width: 50,
+                  decoration: BoxDecoration(
+                    color: customColorssss.color, shape: BoxShape.circle,
+                  ),
+                )
+              ],
             )
           ],
         ),

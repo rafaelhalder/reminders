@@ -53,8 +53,7 @@ class _AddListScreenState extends State<AddListScreen> {
             )
           ],
         ),
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
+        body: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [

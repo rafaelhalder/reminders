@@ -15,7 +15,9 @@ class CategoryIcon extends StatelessWidget {
         color: bgColor,
         shape: BoxShape.circle
       ),
-      child: Icon(iconData, size: 30, color: Colors.white)
+      child: Icon(
+        iconData, size: 30
+        )
     );
   }
 }

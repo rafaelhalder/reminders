@@ -15,16 +15,16 @@ class _AddListScreenState extends State<AddListScreen> {
   CustomColor _selectedColor = CustomColorCollection().colors.first;
   CustomIcon _selectedIcon = CustomIconCollection().icons.first;
 
-  TextEditingController textController = TextEditingController();
+  final TextEditingController _textController = TextEditingController();
 
-  String listName = "";
+  String _listname = "";
 
   @override
   void initState() {
     super.initState();
-    textController.addListener(() {
+    _textController.addListener(() {
       setState(() {
-        listName = textController.text;
+        _listname = _textController.text;
       });
     });
   }
@@ -36,16 +36,20 @@ class _AddListScreenState extends State<AddListScreen> {
           title: const Text('New List'),
           actions: [
             TextButton(
-              onPressed: () {
-                print(textController.selection);
-                if (textController.text.isNotEmpty) {
+              onPressed: _listname.isEmpty ? null : () {
+                print(_textController.selection);
+                if (_textController.text.isNotEmpty) {
                   print('add to database');
                 } else {
                   print('please include text');
                 }
               },
-              child: Text('Add', style: TextStyle(
-                color: listName.isNotEmpty ? Colors.blueAccent : Colors.grey)),
+              child: const Text('Add',
+                  // style: TextStyle(
+                  //     color: _listname.isNotEmpty
+                  //         ? Colors.blueAccent
+                  //         : Colors.grey)
+                          ),
             )
           ],
         ),
@@ -67,17 +71,20 @@ class _AddListScreenState extends State<AddListScreen> {
                     color: Theme.of(context).cardColor,
                     borderRadius: BorderRadius.circular(10)),
                 child: TextField(
-                    controller: textController,
+                    controller: _textController,
                     autofocus: true,
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.headline5,
                     decoration: InputDecoration(
                       border: InputBorder.none,
-                      suffixIcon: Container(
-                          decoration: BoxDecoration(
-                              shape: BoxShape.circle,
-                              color: Theme.of(context).primaryColor),
-                          child: const Icon(Icons.clear)),
+                      suffixIcon: IconButton(
+                        onPressed: () => _textController.clear(),
+                        icon: Container(
+                            decoration: BoxDecoration(
+                                shape: BoxShape.circle,
+                                color: Theme.of(context).primaryColor),
+                            child: const Icon(Icons.clear, color: Colors.white)),
+                      ),
                     )),
               ),
               const SizedBox(height: 10),

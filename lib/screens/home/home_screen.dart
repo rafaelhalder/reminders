@@ -9,7 +9,7 @@ import '../../models/category/category.dart';
 import 'widgets/grid_view_items.dart';
 
 class HomeScreen extends StatefulWidget {
-  HomeScreen({Key? key}) : super(key: key);
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -38,7 +38,8 @@ class _HomeScreenState extends State<HomeScreen> {
             },
             child: Text(
               layoutType == 'grid' ? 'Edit' : 'feito',
-              style: TextStyle(color: Colors.white),
+              // style: TextStyle(color: Colors.white),
+              
             ),
           ),
         ],

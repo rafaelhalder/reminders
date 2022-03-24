@@ -15,10 +15,25 @@ class App extends StatelessWidget {
     return MaterialApp(
       initialRoute: '/',
       routes: {
-        '/': (context) => HomeScreen(),
+        '/': (context) => const HomeScreen(),
+        // ignore: prefer_const_constructors
         '/addList': (context) => AddListScreen(),
       },
-      theme: ThemeData.dark(),
+      theme: ThemeData(
+        iconTheme: const IconThemeData(color: Colors.white),
+        brightness: Brightness.dark,
+        scaffoldBackgroundColor: Colors.black,
+        appBarTheme: const AppBarTheme(backgroundColor: Colors.black87),
+        textButtonTheme: TextButtonThemeData(
+          style: TextButton.styleFrom(
+            primary: Colors.blueAccent,
+            textStyle: const TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16,
+            )
+          )
+        )
+      ),
     );
   }
 }

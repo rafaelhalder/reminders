@@ -3,6 +3,7 @@ import 'package:reminders/models/common/custom_color.dart';
 import 'package:reminders/models/common/custom_color_collection.dart';
 import 'package:reminders/models/common/custom_icon.dart';
 import 'package:reminders/models/common/custom_icon_collection.dart';
+import 'package:reminders/models/todo_list/todo_list.dart';
 
 class AddListScreen extends StatefulWidget {
   const AddListScreen({Key? key}) : super(key: key);
@@ -30,26 +31,46 @@ class _AddListScreenState extends State<AddListScreen> {
   }
 
   @override
+  void dispose() {
+    super.dispose();
+    _textController.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
           title: const Text('New List'),
           actions: [
             TextButton(
-              onPressed: _listname.isEmpty ? null : () {
-                print(_textController.selection);
-                if (_textController.text.isNotEmpty) {
-                  print('add to database');
-                } else {
-                  print('please include text');
-                }
-              },
-              child: const Text('Add',
-                  // style: TextStyle(
-                  //     color: _listname.isNotEmpty
-                  //         ? Colors.blueAccent
-                  //         : Colors.grey)
+              onPressed: _listname.isEmpty
+                  ? null
+                  : () {
+                      print(_textController.selection);
+                      if (_textController.text.isNotEmpty) {
+                        // print('add to database');
+                        Navigator.pop(
+                          context,
+                          TodoList(
+                            id: '1',
+                            title: _textController.text,
+                            icon: {
+                              "id": _selectedIcon.id,
+                              "color": _selectedColor.id
+                            },
                           ),
+                        );
+                      } else {
+                        print('please include text');
+                      }
+                    },
+              child: const Text(
+                'Add',
+                // style: TextStyle(
+                //     color: _listname.isNotEmpty
+                //         ? Colors.blueAccent
+                //         : Colors.grey)
+              ),
             )
           ],
         ),
@@ -82,7 +103,8 @@ class _AddListScreenState extends State<AddListScreen> {
                             decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 color: Theme.of(context).primaryColor),
-                            child: const Icon(Icons.clear, color: Colors.white)),
+                            child:
+                                const Icon(Icons.clear, color: Colors.white)),
                       ),
                     )),
               ),

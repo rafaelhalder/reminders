@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:reminders/screens/add_list/add_list_screen.dart';
+import 'package:reminders/screens/add_reminder/add_reminder_screen.dart';
 import 'package:reminders/screens/home/home_screen.dart';
 
 void main() {
@@ -18,6 +19,8 @@ class App extends StatelessWidget {
         '/': (context) => const HomeScreen(),
         // ignore: prefer_const_constructors
         '/addList': (context) => AddListScreen(),
+        // ignore: prefer_const_constructors
+        '/addReminder': (context) => AddReminderScreen(),
       },
       theme: ThemeData(
         iconTheme: const IconThemeData(color: Colors.white),
@@ -32,7 +35,8 @@ class App extends StatelessWidget {
               fontSize: 16,
             )
           )
-        )
+        ),
+        dividerColor: Colors.grey[600]
       ),
     );
   }

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:reminders/screens/home/add_list/add_list_screen.dart';
+import 'package:reminders/screens/add_list/add_list_screen.dart';
 
 class Footer extends StatelessWidget {
   const Footer({

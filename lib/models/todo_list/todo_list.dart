@@ -4,4 +4,5 @@ class TodoList {
   final Map icon;
 
   TodoList({required this.id, required this.title, required this.icon});
+
 }

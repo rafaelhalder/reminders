@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:reminders/models/common/custom_color.dart';
 import 'package:reminders/models/common/custom_color_collection.dart';
 import 'package:reminders/models/common/custom_icon.dart';
 import 'package:reminders/models/common/custom_icon_collection.dart';
 import 'package:reminders/models/todo_list/todo_list.dart';
+import 'package:reminders/models/todo_list/todo_list_collection.dart';
 
 class AddListScreen extends StatefulWidget {
   const AddListScreen({Key? key}) : super(key: key);
@@ -48,18 +50,19 @@ class _AddListScreenState extends State<AddListScreen> {
                   : () {
                       print(_textController.selection);
                       if (_textController.text.isNotEmpty) {
+
+                        Provider.of<TodoListCollection>(
+                          context, listen: false).addTodoList(
+                            TodoList(
+                              id: DateTime.now().toString(),
+                              title: _textController.text,
+                              icon: {
+                                "id": _selectedIcon.id,
+                                "color": _selectedColor.id
+                              },
+                            ));
                         // print('add to database');
-                        Navigator.pop(
-                          context,
-                          TodoList(
-                            id: '1',
-                            title: _textController.text,
-                            icon: {
-                              "id": _selectedIcon.id,
-                              "color": _selectedColor.id
-                            },
-                          ),
-                        );
+                        Navigator.pop(context);
                       } else {
                         print('please include text');
                       }

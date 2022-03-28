@@ -1,6 +1,8 @@
+
 import 'package:flutter/material.dart';
 import 'package:reminders/models/category/category_collection.dart';
 import 'package:reminders/models/todo_list/todo_list.dart';
+import 'package:reminders/screens/home/widgets/TodoLists.dart';
 import 'package:reminders/screens/home/widgets/footer.dart';
 import 'package:reminders/screens/home/widgets/list_view_intems.dart';
 
@@ -18,12 +20,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   List<TodoList> todoLists = [];
 
-  addNewList(TodoList list) {
-    setState(() {
-      print('add list');
-      todoLists.add(list);
-    });
-  }
 
   CategoryCollection categoryCollection = CategoryCollection();
 
@@ -53,32 +49,28 @@ class _HomeScreenState extends State<HomeScreen> {
       ),
       body: Container(
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
+          // mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          // crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Expanded(
-              child: AnimatedCrossFade(
-                  duration: const Duration(milliseconds: 300),
-                  crossFadeState: layoutType == 'grid'
-                      ? CrossFadeState.showFirst
-                      : CrossFadeState.showSecond,
-                  firstChild: GridViewItems(
-                    categories: categoryCollection.selectedCategories,
+              child: ListView(
+                children: [
+                  AnimatedCrossFade(
+                      duration: const Duration(milliseconds: 300),
+                      crossFadeState: layoutType == 'grid'
+                          ? CrossFadeState.showFirst
+                          : CrossFadeState.showSecond,
+                      firstChild: GridViewItems(
+                        categories: categoryCollection.selectedCategories,
+                      ),
+                      secondChild:
+                      ListViewItems(categoryCollection: categoryCollection)
                   ),
-                  secondChild:
-                      ListViewItems(categoryCollection: categoryCollection)),
+                  TodoLists(),
+                ],
+              ),
             ),
-            ListView.builder(
-              itemCount: todoLists.length,
-              scrollDirection: Axis.vertical,
-              shrinkWrap: true,
-              itemBuilder: (context, index) {
-                return ListTile(
-                  leading: Text(todoLists[index].title),
-                );
-              },
-            ),
-            Footer(addNewListCallback: addNewList)
+            Footer()
           ],
         ),
       ),
